@@ -4,209 +4,258 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JD.gaming - Boutique Gaming Gabon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0f0f0f;
-      color: white;
+      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #111217 0%, #181a23 100%);
+      color: #fff;
+      min-height: 100vh;
     }
-    header {
-      background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-      padding: 2rem 1rem;
+    .hero-bg {
+      background: url('images/hero-bg.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 4rem 0 2.5rem 0;
       text-align: center;
+      position: relative;
+      box-shadow: 0 4px 24px 0 #000a;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-    header p {
-      color: #00ccff;
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      background-color: #181818;
-      padding: 1rem 0;
-      font-size: 1.1rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
+    .logo {
+      font-size: 3rem;
       font-weight: 700;
-      transition: color 0.2s;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2em;
     }
-    nav a:hover {
+    .logo .jd {
       color: #00ccff;
+      text-shadow: 0 0 8px #00ccff55;
     }
-    .section {
-      padding: 2rem 1rem;
-      max-width: 700px;
-      margin: auto;
+    .hero-bg p {
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 500;
+      margin: 0;
+      text-shadow: 0 2px 8px #0009;
     }
-    .section h2 {
-      color: #00ccff;
-      margin-bottom: 1.5rem;
-      font-size: 1.6rem;
-      font-weight: 800;
-      text-align: left;
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 3rem 0 1.5rem 0;
+      text-align: center;
+      letter-spacing: 0.02em;
     }
     .products {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    @media (min-width: 600px) {
-      .products {
-        flex-direction: row;
-        gap: 2rem;
-      }
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      padding: 0 2rem;
     }
     .card {
-      background-color: #181818;
-      padding: 1.2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px #00000030;
-      text-align: center;
-      transition: transform 0.2s;
-      border: 1px solid #222;
+      background: #181a23;
+      border-radius: 18px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 4px 24px 0 #0006;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .15s;
     }
     .card:hover {
       transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 8px 24px #00ccff40;
-      border-color: #00ccff;
+      box-shadow: 0 8px 32px 0 #0008;
     }
     .card img {
-      width: 100%;
-      max-width: 120px;
-      height: auto;
-      border-radius: 12px;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 10px;
       margin-bottom: 1rem;
-      background: #222;
-      object-fit: cover;
-      box-shadow: 0 2px 10px #00ccff30;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      background: #101217;
+      box-shadow: 0 2px 12px #0004;
     }
     .card h3 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.15rem;
+      margin: 0;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #fff;
+      margin-bottom: 0.5rem;
     }
     .card p {
-      margin: 0;
+      font-size: 1rem;
+      margin: 0 0 0.75rem 0;
       color: #ccc;
-      font-size: 1rem;
+      text-align: center;
     }
-    .photos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1.2rem;
-      padding-top: 0.5rem;
-    }
-    .photos img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 2px 8px #00ccff20;
-      border: 1px solid #222;
-      background: #222;
-      aspect-ratio: 1.2 / 1;
-    }
-    form {
-      display: grid;
-      gap: 1rem;
-      max-width: 400px;
-      margin: auto;
-    }
-    input, textarea {
-      padding: 0.75rem;
-      border: none;
-      border-radius: 6px;
-      background-color: #2b2b2b;
-      color: white;
-      font-size: 1rem;
-    }
-    button {
-      padding: 0.75rem;
-      background-color: #00ccff;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
+    .card .price {
       font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.2s;
+      font-weight: 700;
+      color: #00ccff;
+      margin-top: 0.5rem;
     }
-    button:hover {
-      background-color: #0099cc;
+    .contact-section {
+      background: #101217;
+      margin: 0;
+      padding: 2.5rem 2rem 2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .contact-info, .newsletter {
+      flex: 1 1 280px;
+      min-width: 240px;
+      max-width: 400px;
+    }
+    .contact-info h2,
+    .newsletter h2 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+    }
+    .contact-info p {
+      font-size: 1rem;
+      color: #ccc;
+      margin: 0 0 1rem 0;
+    }
+    .socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.7rem;
+    }
+    .socials a {
+      color: #fff;
+      font-size: 1.3rem;
+      transition: color .18s;
+      text-decoration: none;
+    }
+    .socials a:hover {
+      color: #00ccff;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+    .newsletter-form input[type="email"] {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: none;
+      background: #232533;
+      color: #fff;
+      font-size: 1rem;
+      flex: 1;
+    }
+    .newsletter-form button {
+      padding: 0.8rem 1.4rem;
+      background: #00ccff;
+      color: #fff;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .newsletter-form button:hover {
+      background: #0099cc;
     }
     footer {
+      background: #181a23;
+      color: #aaa;
       text-align: center;
       padding: 1rem;
-      background-color: #181818;
-      margin-top: 2rem;
       font-size: 0.95rem;
-      color: #aaa;
+      margin-top: 2rem;
+      border-top: 1px solid #232533;
+    }
+    @media (max-width: 700px) {
+      .hero-bg {
+        padding: 2rem 0 1.3rem 0;
+      }
+      .section-title {
+        font-size: 1.3rem;
+      }
+      .products {
+        grid-template-columns: 1fr;
+        padding: 0 0.8rem;
+      }
+      .contact-section {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 2rem 1rem 1.2rem 1rem;
+      }
     }
   </style>
+  <!-- Optionally, use FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 <body>
-  <header>
-    <h1>JD.gaming</h1>
+  <div class="hero-bg">
+    <div class="logo">
+      <span class="jd">JD</span><span>.gaming</span>
+    </div>
     <p>Trouve ton bonheur et améliore tes performances</p>
-  </header>
-  <nav>
-    <a href="#produits">Produits</a>
-    <a href="#galerie">Galerie</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <section class="section" id="produits">
-    <h2>Produits en vedette</h2>
-    <div class="products">
-      <div class="card">
-        <img src="images/radiateur.jpg" alt="Radiateur téléphone" loading="lazy">
-        <h3>Radiateur pour téléphone</h3>
-        <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
-      </div>
-      <div class="card">
-        <img src="images/manette.jpg" alt="Manette mobile" loading="lazy">
-        <h3>Manette pour téléphone</h3>
-        <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
-      </div>
-      <div class="card">
-        <img src="images/gants.jpg" alt="Gants pour pouces" loading="lazy">
-        <h3>Gants pour pouces</h3>
-        <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
+  </div>
+
+  <div class="section-title" id="produits">Produits en vedette</div>
+  <div class="products">
+    <div class="card">
+      <img src="images/radiateur.jpg" alt="Radiateur téléphone">
+      <h3>Radiateur pour téléphone</h3>
+      <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
+      <div class="price">€60</div>
+    </div>
+    <div class="card">
+      <img src="images/manette.jpg" alt="Manette mobile">
+      <h3>Manette pour téléphone</h3>
+      <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
+      <div class="price">€45</div>
+    </div>
+    <div class="card">
+      <img src="images/gants.jpg" alt="Gants pour pouces">
+      <h3>Gants pour pouces</h3>
+      <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
+      <div class="price">€15</div>
+    </div>
+  </div>
+
+  <div class="contact-section" id="contact">
+    <div class="contact-info">
+      <h2>Contact</h2>
+      <p>info@jdgaming.ga</p>
+      <div class="socials">
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
-  </section>
-  <section class="section" id="galerie">
-    <h2>Galerie</h2>
-    <div class="photos">
-      <img src="images/setup1.jpg" alt="setup1" loading="lazy">
-      <img src="images/setup2.jpg" alt="setup2" loading="lazy">
-      <img src="images/setup3.jpg" alt="setup3" loading="lazy">
+    <div class="newsletter">
+      <h2>Inscription à la newsletter</h2>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Entrez votre adresse e-mail" required />
+        <button type="submit">S'inscrire</button>
+      </form>
     </div>
-  </section>
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Nom" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Message" rows="5"></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </section>
+  </div>
+
   <footer>
     &copy; 2025 JD.gaming - Tous droits réservés
   </footer>
 </body>
-  </html>
+</html>

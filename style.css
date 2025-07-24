@@ -49,3 +49,6 @@ footer {
     background-color: #111;
     color: #888;
 }
+.card img {
+  border: 2px solid red;
+}

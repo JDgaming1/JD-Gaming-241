@@ -2,9 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JD.gaming</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JD.gaming - Boutique Gaming Gabon</title>
   <style>
     body {
       margin: 0;
@@ -12,89 +11,149 @@
       background-color: #0f0f0f;
       color: white;
     }
-
     header {
       background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-      padding: 2rem;
+      padding: 2rem 1rem;
       text-align: center;
     }
-
     header h1 {
       margin: 0;
-      font-size: 3rem;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
     }
-
     header p {
       color: #00ccff;
       font-size: 1.2rem;
       margin-top: 0.5rem;
+      margin-bottom: 0;
     }
-
     nav {
-      background-color: #1a1a1a;
       display: flex;
       justify-content: center;
       gap: 2rem;
+      background-color: #181818;
       padding: 1rem 0;
+      font-size: 1.1rem;
     }
-
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      transition: color 0.2s;
     }
-
+    nav a:hover {
+      color: #00ccff;
+    }
     .section {
-      padding: 2rem;
-      max-width: 1200px;
+      padding: 2rem 1rem;
+      max-width: 700px;
       margin: auto;
     }
-
     .section h2 {
       color: #00ccff;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-align: left;
     }
-
     .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 1.5rem;
     }
-
+    @media (min-width: 600px) {
+      .products {
+        flex-direction: row;
+        gap: 2rem;
+      }
+    }
     .card {
-      background-color: #1f1f1f;
-      border-radius: 12px;
-      padding: 1rem;
+      background-color: #181818;
+      padding: 1.2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px #00000030;
       text-align: center;
-      transition: transform 0.3s;
+      transition: transform 0.2s;
+      border: 1px solid #222;
     }
-
     .card:hover {
-      transform: scale(1.03);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 24px #00ccff40;
+      border-color: #00ccff;
     }
-
     .card img {
       width: 100%;
-      border-radius: 8px;
-      height: 180px;
+      max-width: 120px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      background: #222;
       object-fit: cover;
+      box-shadow: 0 2px 10px #00ccff30;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
-
     .card h3 {
-      margin: 1rem 0 0.5rem;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
     }
-
     .card p {
-      font-size: 0.95rem;
+      margin: 0;
       color: #ccc;
+      font-size: 1rem;
     }
-
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.2rem;
+      padding-top: 0.5rem;
+    }
+    .photos img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #00ccff20;
+      border: 1px solid #222;
+      background: #222;
+      aspect-ratio: 1.2 / 1;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #2b2b2b;
+      color: white;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.75rem;
+      background-color: #00ccff;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #0099cc;
+    }
     footer {
       text-align: center;
       padding: 1rem;
-      background-color: #1a1a1a;
-      margin-top: 3rem;
-      font-size: 0.9rem;
+      background-color: #181818;
+      margin-top: 2rem;
+      font-size: 0.95rem;
       color: #aaa;
     }
   </style>
@@ -104,32 +163,50 @@
     <h1>JD.gaming</h1>
     <p>Trouve ton bonheur et améliore tes performances</p>
   </header>
-
   <nav>
     <a href="#produits">Produits</a>
     <a href="#galerie">Galerie</a>
     <a href="#contact">Contact</a>
   </nav>
-
   <section class="section" id="produits">
     <h2>Produits en vedette</h2>
     <div class="products">
       <div class="card">
-        <img src="radiateur.jpg" alt="Radiateur téléphone" />
+        <img src="images/radiateur.jpg" alt="Radiateur téléphone" loading="lazy">
         <h3>Radiateur pour téléphone</h3>
         <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
       </div>
-
       <div class="card">
-        <img src="manette.jpg" alt="Manette mobile" />
+        <img src="images/manette.jpg" alt="Manette mobile" loading="lazy">
         <h3>Manette pour téléphone</h3>
         <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
       </div>
+      <div class="card">
+        <img src="images/gants.jpg" alt="Gants pour pouces" loading="lazy">
+        <h3>Gants pour pouces</h3>
+        <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
+      </div>
     </div>
   </section>
-
+  <section class="section" id="galerie">
+    <h2>Galerie</h2>
+    <div class="photos">
+      <img src="images/setup1.jpg" alt="setup1" loading="lazy">
+      <img src="images/setup2.jpg" alt="setup2" loading="lazy">
+      <img src="images/setup3.jpg" alt="setup3" loading="lazy">
+    </div>
+  </section>
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Nom" required />
+      <input type="email" placeholder="Email" required />
+      <textarea placeholder="Message" rows="5"></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+  </section>
   <footer>
-    JD.gaming — © 2025 — Le premier site de vente de produits gaming au Gabon
+    &copy; 2025 JD.gaming - Tous droits réservés
   </footer>
 </body>
-</html>
+  </html>

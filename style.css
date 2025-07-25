@@ -52,3 +52,16 @@ footer {
 .card img {
   border: 2px solid red;
 }
+import { topic, api } from "@nitric/sdk";
+
+const events = topic("events").allow("publish");
+
+// Publish messages from any service, such as APIs.
+api('public').post('/users', async ({req, res}) => {
+  const userData = req.json()
+
+  await events.publish({
+    type: 'user.created',
+    details: userData,
+  })
+}

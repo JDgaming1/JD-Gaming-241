@@ -2,65 +2,57 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JD.gaming - Accueil</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
-      color: #fff;
-    }
-    header {
-      background-color: #1a1a1a;
-      padding: 1rem;
-      text-align: center;
-    }
-    header h1 {
-      color: #00ccff;
-      margin: 0;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      margin: 0 1rem;
-      color: #00ccff;
-      text-decoration: none;
-    }
-    main {
-      padding: 2rem;
-      text-align: center;
-    }
-    footer {
-      background-color: #1a1a1a;
-      color: #ccc;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-    footer a {
-      color: #00ccff;
-      text-decoration: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JD Gaming - Accueil</title>
+  <meta name="description" content="JD Gaming : Découvrez notre univers, nos projets et notre passion pour le gaming." />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
-    <h1>Bienvenue sur JD.gaming</h1>
+    <h1>Bienvenue sur JD Gaming</h1>
     <nav>
-      <a href="index.html">Accueil</a>
-      <a href="mentions.html">Mentions légales</a>
+      <ul>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
   <main>
-    <h2>Nos produits gaming</h2>
-    <p>Radiateurs pour téléphone, accessoires pro, et bien plus encore...</p>
+    <section id="about">
+      <h2>À propos de JD Gaming</h2>
+      <p>Nous sommes une équipe passionnée par les jeux vidéo et la création de contenus interactifs.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Nos projets</h2>
+      <article>
+        <h3>Jeu 1</h3>
+        <p>Description de ton jeu ou projet ici.</p>
+      </article>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <form action="#" method="post">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required />
+        
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required></textarea>
+        
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 JD.gaming — <a href="mentions.html">Mentions légales</a></p>
+    <p>&copy; JD Gaming 2025 - Tous droits réservés</p>
   </footer>
 </body>
 </html>

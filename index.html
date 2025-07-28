@@ -3,86 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JD Gaming - Boutique spécialisée en accessoires gaming au Gabon. Radiateurs, manettes et équipements pour gamers.">
+  <meta name="keywords" content="gaming, Gabon, accessoires gaming, manettes, radiateurs téléphone">
   <title>JD.gaming - Boutique Gaming Gabon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
+    :root {
+      --primary-color: #00ccff;
+      --dark-bg: #181a23;
+      --darker-bg: #111217;
+      --text-color: #fff;
+      --text-light: #ccc;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
       margin: 0;
       font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, #111217 0%, #181a23 100%);
-      color: #fff;
+      background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+      color: var(--text-color);
       min-height: 100vh;
+      line-height: 1.6;
     }
+    
     /* --- NAVBAR --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+    
     .navbar {
-      width: 100vw;
+      width: 100%;
       height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 1.5rem;
       background: rgba(24,26,35,0.95);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      box-shadow: 0 1px 16px #0006;
+      box-shadow: 0 1px 16px rgba(0,0,0,0.4);
     }
+    
     .navbar-left {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
+    
     .navbar-menu-btn {
       background: none;
       border: none;
-      color: #fff;
+      color: var(--text-color);
       font-size: 1.7rem;
       cursor: pointer;
       margin-right: 0.5rem;
       display: flex;
       align-items: center;
+      padding: 0.5rem;
     }
+    
     .navbar-logo {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text-color);
       letter-spacing: 0.03em;
       display: flex;
       align-items: center;
+      text-decoration: none;
     }
+    
     .navbar-logo .jd {
-      color: #00ccff;
+      color: var(--primary-color);
       margin-right: 3px;
-      text-shadow: 0 0 6px #00ccff77;
+      text-shadow: 0 0 6px rgba(0, 204, 255, 0.47);
     }
+    
     .navbar-right {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
+    
     .navbar-icon {
-      color: #fff;
+      color: var(--text-color);
       font-size: 1.4rem;
       background: none;
       border: none;
       margin: 0 0.2em;
       cursor: pointer;
-      transition: color .16s;
+      transition: color 0.16s;
       position: relative;
+      padding: 0.5rem;
     }
+    
     .navbar-icon:hover {
-      color: #00ccff;
+      color: var(--primary-color);
     }
+    
     .cart-badge {
       position: absolute;
       top: -7px;
       right: -7px;
-      background: #00ccff;
-      color: #181a23;
+      background: var(--primary-color);
+      color: var(--dark-bg);
       font-size: 0.7rem;
       border-radius: 50%;
       width: 18px;
@@ -92,6 +122,7 @@
       justify-content: center;
       font-weight: bold;
     }
+    
     /* MENU SLIDE */
     .side-menu {
       position: fixed;
@@ -99,8 +130,8 @@
       left: -220px;
       width: 220px;
       height: 100vh;
-      background: #181a23;
-      box-shadow: 2px 0 12px #0006;
+      background: var(--dark-bg);
+      box-shadow: 2px 0 12px rgba(0,0,0,0.4);
       padding: 2.5rem 1.3rem;
       display: flex;
       flex-direction: column;
@@ -108,346 +139,525 @@
       transition: left 0.23s cubic-bezier(.5,.07,.45,1.1);
       z-index: 200;
     }
+    
     .side-menu.active {
       left: 0;
     }
+    
     .side-menu a {
-      color: #fff;
+      color: var(--text-color);
       text-decoration: none;
       font-size: 1.15rem;
       font-weight: 500;
-      padding: 0.3em 0.4em;
+      padding: 0.5em 0.8em;
       border-radius: 5px;
-      transition: background .14s;
+      transition: all 0.2s;
     }
-    .side-menu a:hover {
+    
+    .side-menu a:hover,
+    .side-menu a:focus {
       background: #232533;
-      color: #00ccff;
+      color: var(--primary-color);
+      transform: translateX(5px);
     }
+    
     .side-menu-close {
       position: absolute;
       top: 0.7rem;
       right: 0.8rem;
       background: none;
       border: none;
-      color: #fff;
+      color: var(--text-color);
       font-size: 1.3rem;
       cursor: pointer;
+      padding: 0.5rem;
     }
+    
     /* Overlay for menu */
     .menu-overlay {
       display: none;
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #0007;
+      top: 0; 
+      left: 0; 
+      width: 100vw; 
+      height: 100vh;
+      background: rgba(0,0,0,0.7);
       z-index: 190;
     }
+    
     .menu-overlay.active {
       display: block;
     }
+    
     /* Adjust main content for navbar */
-    .with-navbar {
+    main {
       margin-top: 56px;
     }
-    /* --- RESTE DE TON STYLE (copié de ton code existant) --- */
+    
+    /* HERO SECTION */
     .hero-bg {
-      background: url('images/hero-bg.jpg') no-repeat center center;
-      background-size: cover;
-      padding: 4rem 0 2.5rem 0;
+      background: url('https://via.placeholder.com/1920x1080/181a23/00ccff?text=JD.Gaming') no-repeat center center/cover;
+      padding: 4rem 1rem 2.5rem;
       text-align: center;
       position: relative;
-      box-shadow: 0 4px 24px 0 #000a;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
+    
     .logo {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
       letter-spacing: 0.03em;
       margin-bottom: 0.5rem;
-      color: #fff;
+      color: var(--text-color);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.2em;
     }
+    
     .logo .jd {
-      color: #00ccff;
-      text-shadow: 0 0 8px #00ccff55;
+      color: var(--primary-color);
+      text-shadow: 0 0 8px rgba(0, 204, 255, 0.33);
     }
+    
     .hero-bg p {
-      font-size: 1.5rem;
-      color: #fff;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      color: var(--text-color);
       font-weight: 500;
       margin: 0;
-      text-shadow: 0 2px 8px #0009;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      max-width: 800px;
+      padding: 0 1rem;
     }
+    
+    /* PRODUCTS SECTION */
+    .section {
+      padding: 2rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
     .section-title {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 700;
-      color: #fff;
-      margin: 3rem 0 1.5rem 0;
+      color: var(--text-color);
+      margin: 1rem 0 2rem;
       text-align: center;
       letter-spacing: 0.02em;
+      position: relative;
     }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--primary-color);
+      margin: 0.5rem auto 0;
+    }
+    
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
-      justify-content: center;
       margin-bottom: 3rem;
-      padding: 0 2rem;
     }
+    
     .card {
-      background: #181a23;
+      background: var(--dark-bg);
       border-radius: 18px;
       overflow: hidden;
-      text-align: left;
-      box-shadow: 0 4px 24px 0 #0006;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform .15s;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
+    
     .card:hover {
       transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 8px 32px 0 #0008;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
+    
     .card img {
-      width: 120px;
-      height: 120px;
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      aspect-ratio: 1/1;
       object-fit: contain;
       border-radius: 10px;
       margin-bottom: 1rem;
-      background: #101217;
-      box-shadow: 0 2px 12px #0004;
+      background: var(--darker-bg);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      padding: 0.5rem;
     }
+    
     .card h3 {
       margin: 0;
       font-size: 1.1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text-color);
       margin-bottom: 0.5rem;
     }
+    
     .card p {
       font-size: 1rem;
-      margin: 0 0 0.75rem 0;
-      color: #ccc;
+      margin: 0 0 0.75rem;
+      color: var(--text-light);
       text-align: center;
+      flex-grow: 1;
     }
+    
     .card .price {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #00ccff;
+      color: var(--primary-color);
       margin-top: 0.5rem;
     }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      color: var(--dark-bg);
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s;
+      text-decoration: none;
+      margin-top: 0.5rem;
+    }
+    
+    .btn:hover {
+      background: #0099cc;
+      transform: translateY(-2px);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    /* CONTACT SECTION */
     .contact-section {
-      background: #101217;
-      margin: 0;
-      padding: 2.5rem 2rem 2rem 2rem;
+      background: var(--darker-bg);
+      padding: 3rem 1rem;
+    }
+    
+    .contact-container {
+      max-width: 1400px;
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
       align-items: flex-start;
     }
-    .contact-info, .newsletter {
+    
+    .contact-info, 
+    .newsletter {
       flex: 1 1 280px;
       min-width: 240px;
       max-width: 400px;
     }
+    
     .contact-info h2,
     .newsletter h2 {
-      font-size: 1.2rem;
-      color: #fff;
-      margin: 0 0 1rem 0;
+      font-size: 1.4rem;
+      color: var(--text-color);
+      margin: 0 0 1.5rem;
       font-weight: 700;
+      position: relative;
+      padding-bottom: 0.5rem;
     }
+    
+    .contact-info h2::after,
+    .newsletter h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary-color);
+    }
+    
     .contact-info p {
       font-size: 1rem;
-      color: #ccc;
-      margin: 0 0 1rem 0;
+      color: var(--text-light);
+      margin: 0 0 1.5rem;
     }
+    
     .socials {
       display: flex;
-      gap: 1rem;
-      margin-top: 0.7rem;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
+    
     .socials a {
-      color: #fff;
-      font-size: 1.3rem;
-      transition: color .18s;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: color 0.18s, transform 0.2s;
       text-decoration: none;
     }
+    
     .socials a:hover {
-      color: #00ccff;
+      color: var(--primary-color);
+      transform: translateY(-3px);
     }
+    
     .newsletter-form {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.7rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
+    
     .newsletter-form input[type="email"] {
-      padding: 0.8rem;
+      padding: 0.8rem 1rem;
       border-radius: 6px;
       border: none;
       background: #232533;
-      color: #fff;
+      color: var(--text-color);
       font-size: 1rem;
       flex: 1;
+      min-width: 200px;
     }
+    
+    .newsletter-form input[type="email"]::placeholder {
+      color: #999;
+    }
+    
     .newsletter-form button {
-      padding: 0.8rem 1.4rem;
-      background: #00ccff;
-      color: #fff;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      color: var(--dark-bg);
       border-radius: 6px;
       border: none;
       font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
-      transition: background .18s;
+      transition: background 0.18s;
     }
+    
     .newsletter-form button:hover {
       background: #0099cc;
     }
+    
+    /* FOOTER */
     footer {
-      background: #181a23;
+      background: var(--dark-bg);
       color: #aaa;
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
       font-size: 0.95rem;
-      margin-top: 2rem;
       border-top: 1px solid #232533;
     }
-    @media (max-width: 700px) {
+    
+    /* RESPONSIVE ADJUSTMENTS */
+    @media (max-width: 768px) {
       .navbar {
-        padding: 0 0.5rem;
-        height: 48px;
+        padding: 0 1rem;
+        height: 50px;
       }
+      
       .navbar-logo {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
+      
       .hero-bg {
-        padding: 2rem 0 1.3rem 0;
+        padding: 2rem 1rem;
       }
-      .section-title {
-        font-size: 1.3rem;
-      }
+      
       .products {
         grid-template-columns: 1fr;
-        padding: 0 0.8rem;
+        padding: 0;
       }
-      .contact-section {
+      
+      .contact-container {
         flex-direction: column;
-        gap: 1.2rem;
-        padding: 2rem 1rem 1.2rem 1rem;
+        gap: 2rem;
       }
+      
       .side-menu {
-        width: 70vw;
-        min-width: 140px;
-        padding: 2rem 0.8rem;
+        width: 80vw;
+        padding: 2rem 1rem;
+      }
+      
+      .newsletter-form input[type="email"],
+      .newsletter-form button {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0 0.5rem;
+      }
+      
+      .navbar-menu-btn,
+      .navbar-icon {
+        font-size: 1.3rem;
+      }
+      
+      .side-menu {
+        width: 85vw;
       }
     }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-left">
-      <button class="navbar-menu-btn" id="openMenuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      <span class="navbar-logo"><span class="jd">JD</span>.gaming</span>
-    </div>
-    <div class="navbar-right">
-      <button class="navbar-icon" aria-label="Recherche" onclick="alert('Fonction recherche à venir !')">
-        <i class="fas fa-search"></i>
-      </button>
-      <button class="navbar-icon" aria-label="Panier" onclick="alert('Votre panier est vide !')">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-badge" style="display:none;">0</span>
-      </button>
-    </div>
-  </nav>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button class="navbar-menu-btn" id="openMenuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <a href="#" class="navbar-logo"><span class="jd">JD</span>.gaming</a>
+      </div>
+      <div class="navbar-right">
+        <button class="navbar-icon" aria-label="Recherche">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="navbar-icon" aria-label="Panier">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
   <!-- Side menu -->
-  <div class="side-menu" id="sideMenu">
+  <aside class="side-menu" id="sideMenu">
     <button class="side-menu-close" id="closeMenuBtn" aria-label="Fermer"><i class="fas fa-times"></i></button>
+    <a href="#produits">Produits</a>
     <a href="#contact">Contact</a>
-    <!-- Ajoute d'autres liens ici si besoin -->
-  </div>
+    <a href="#about">À Propos</a>
+    <a href="#" onclick="alert('Page en construction')">Boutique</a>
+  </aside>
   <div class="menu-overlay" id="menuOverlay"></div>
 
   <!-- Main content -->
-  <div class="with-navbar">
-    <div class="hero-bg">
+  <main>
+    <section class="hero-bg">
       <div class="logo">
         <span class="jd">JD</span><span>.gaming</span>
       </div>
       <p>Trouve ton bonheur et améliore tes performances</p>
-    </div>
+      <a href="#produits" class="btn">Découvrir nos produits</a>
+    </section>
 
-    <div class="section-title" id="produits">Produits en vedette</div>
-    <div class="products">
-      <div class="card">
-        <img src="images/radiateur.jpg" alt="Radiateur téléphone">
-        <h3>Radiateur pour téléphone</h3>
-        <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
-        <div class="price">€60</div>
+    <section class="section" id="produits">
+      <h2 class="section-title">Produits en vedette</h2>
+      <div class="products">
+        <article class="card">
+          <img src="https://via.placeholder.com/300/181a23/00ccff?text=Radiateur" alt="Radiateur téléphone gaming" loading="lazy">
+          <h3>Radiateur pour téléphone</h3>
+          <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
+          <div class="price">60€</div>
+          <button class="btn">Ajouter au panier</button>
+        </article>
+        
+        <article class="card">
+          <img src="https://via.placeholder.com/300/181a23/00ccff?text=Manette" alt="Manette mobile gaming" loading="lazy">
+          <h3>Manette pour téléphone</h3>
+          <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
+          <div class="price">45€</div>
+          <button class="btn">Ajouter au panier</button>
+        </article>
+        
+        <article class="card">
+          <img src="https://via.placeholder.com/300/181a23/00ccff?text=Gants" alt="Gants pour pouces gaming" loading="lazy">
+          <h3>Gants pour pouces</h3>
+          <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
+          <div class="price">15€</div>
+          <button class="btn">Ajouter au panier</button>
+        </article>
       </div>
-      <div class="card">
-        <img src="images/manette.jpg" alt="Manette mobile">
-        <h3>Manette pour téléphone</h3>
-        <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
-        <div class="price">€45</div>
-      </div>
-      <div class="card">
-        <img src="images/gants.jpg" alt="Gants pour pouces">
-        <h3>Gants pour pouces</h3>
-        <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
-        <div class="price">€15</div>
-      </div>
-    </div>
+    </section>
 
-    <div class="contact-section" id="contact">
-      <div class="contact-info">
-        <h2>Contact</h2>
-        <p>info@jdgaming.ga</p>
-        <div class="socials">
-          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <section class="contact-section" id="contact">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2>Contact</h2>
+          <p>Pour toute question ou demande spéciale, n'hésitez pas à nous contacter :</p>
+          <p><i class="fas fa-envelope"></i> info@jdgaming.ga</p>
+          <p><i class="fas fa-phone"></i> +241 XX XX XX XX</p>
+          <div class="socials">
+            <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="newsletter">
+          <h2>Newsletter</h2>
+          <p>Abonnez-vous pour recevoir nos offres spéciales et actualités gaming !</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Votre adresse e-mail" required>
+            <button type="submit">S'inscrire</button>
+          </form>
         </div>
       </div>
-      <div class="newsletter">
-        <h2>Inscription à la newsletter</h2>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Entrez votre adresse e-mail" required />
-          <button type="submit">S'inscrire</button>
-        </form>
-      </div>
-    </div>
+    </section>
+  </main>
 
-    <footer>
-      &copy; 2025 JD.gaming - Tous droits réservés
-    </footer>
-  </div>
+  <footer>
+    <p>&copy; 2025 JD.gaming - Tous droits réservés</p>
+    <p><a href="#" style="color: #aaa; text-decoration: none;">Mentions légales</a> | <a href="#" style="color: #aaa; text-decoration: none;">Politique de confidentialité</a></p>
+  </footer>
+
   <script>
-    // Ouverture/fermeture menu
+    // Menu functionality
     const openMenuBtn = document.getElementById('openMenuBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
     const sideMenu = document.getElementById('sideMenu');
     const menuOverlay = document.getElementById('menuOverlay');
 
-    openMenuBtn.onclick = () => {
-      sideMenu.classList.add('active');
-      menuOverlay.classList.add('active');
-    };
-    closeMenuBtn.onclick = () => {
-      sideMenu.classList.remove('active');
-      menuOverlay.classList.remove('active');
-    };
-    menuOverlay.onclick = () => {
-      sideMenu.classList.remove('active');
-      menuOverlay.classList.remove('active');
-    };
+    function toggleMenu() {
+      sideMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+    }
+
+    openMenuBtn.addEventListener('click', toggleMenu);
+    closeMenuBtn.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        alert(`Merci pour votre inscription ! (${email})`);
+        this.reset();
+      });
+    }
+
+    // Add to cart buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+      if (btn.textContent.includes('panier')) {
+        btn.addEventListener('click', function() {
+          const productName = this.closest('.card').querySelector('h3').textContent;
+          alert(`${productName} ajouté au panier !`);
+        });
+      }
+    });
+
+    // Image fallback
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://via.placeholder.com/300/181a23/00ccff?text=Produit+JD';
+      });
+    });
   </script>
 </body>
 </html>

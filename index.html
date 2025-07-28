@@ -512,6 +512,16 @@
         width: 85vw;
       }
     }
+
+    /* Animation pour le panier */
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    .cart-badge.added {
+      animation: bounce 0.5s;
+    }
   </style>
 </head>
 <body>
@@ -526,7 +536,7 @@
         <button class="navbar-icon" aria-label="Recherche">
           <i class="fas fa-search"></i>
         </button>
-        <button class="navbar-icon" aria-label="Panier">
+        <button class="navbar-icon" id="cartButton" aria-label="Panier">
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-badge">0</span>
         </button>
@@ -540,7 +550,7 @@
     <a href="#produits">Produits</a>
     <a href="#contact">Contact</a>
     <a href="#about">À Propos</a>
-    <a href="#" onclick="alert('Page en construction')">Boutique</a>
+    <a href="#" id="boutiqueLink">Boutique</a>
   </aside>
   <div class="menu-overlay" id="menuOverlay"></div>
 
@@ -557,28 +567,28 @@
     <section class="section" id="produits">
       <h2 class="section-title">Produits en vedette</h2>
       <div class="products">
-        <article class="card">
+        <article class="card" data-id="1">
           <img src="https://via.placeholder.com/300/181a23/00ccff?text=Radiateur" alt="Radiateur téléphone gaming" loading="lazy">
           <h3>Radiateur pour téléphone</h3>
           <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
           <div class="price">60€</div>
-          <button class="btn">Ajouter au panier</button>
+          <button class="btn add-to-cart">Ajouter au panier</button>
         </article>
         
-        <article class="card">
+        <article class="card" data-id="2">
           <img src="https://via.placeholder.com/300/181a23/00ccff?text=Manette" alt="Manette mobile gaming" loading="lazy">
           <h3>Manette pour téléphone</h3>
           <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
           <div class="price">45€</div>
-          <button class="btn">Ajouter au panier</button>
+          <button class="btn add-to-cart">Ajouter au panier</button>
         </article>
         
-        <article class="card">
+        <article class="card" data-id="3">
           <img src="https://via.placeholder.com/300/181a23/00ccff?text=Gants" alt="Gants pour pouces gaming" loading="lazy">
           <h3>Gants pour pouces</h3>
           <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
           <div class="price">15€</div>
-          <button class="btn">Ajouter au panier</button>
+          <button class="btn add-to-cart">Ajouter au panier</button>
         </article>
       </div>
     </section>
@@ -616,7 +626,7 @@
   </footer>
 
   <script>
-    // Menu functionality
+    // ===== GESTION DU MENU =====
     const openMenuBtn = document.getElementById('openMenuBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
     const sideMenu = document.getElementById('sideMenu');
@@ -631,7 +641,103 @@
     closeMenuBtn.addEventListener('click', toggleMenu);
     menuOverlay.addEventListener('click', toggleMenu);
 
-    // Newsletter form
+    // ===== PANIER =====
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartButton = document.getElementById('cartButton');
+    const boutiqueLink = document.getElementById('boutiqueLink');
+
+    // Mettre à jour le badge du panier
+    function updateCart() {
+      const badge = document.querySelector('.cart-badge');
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      
+      badge.textContent = totalItems;
+      badge.style.display = totalItems > 0 ? 'flex' : 'none';
+      
+      // Sauvegarder dans le localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Animation du badge
+      if (totalItems > 0) {
+        badge.classList.add('added');
+        setTimeout(() => badge.classList.remove('added'), 500);
+      }
+    }
+
+    // Gestion du clic sur "Ajouter au panier"
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const card = this.closest('.card');
+        const productId = card.dataset.id;
+        const productName = card.querySelector('h3').textContent;
+        const productPrice = parseFloat(card.querySelector('.price').textContent.replace('€', ''));
+        const productImage = card.querySelector('img').src;
+        
+        // Vérifier si le produit est déjà dans le panier
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: productId,
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+          });
+        }
+        
+        updateCart();
+        
+        // Notification visuelle
+        const notification = document.createElement('div');
+        notification.textContent = `${productName} ajouté au panier !`;
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.right = '20px';
+        notification.style.backgroundColor = 'var(--primary-color)';
+        notification.style.color = 'var(--dark-bg)';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '1000';
+        notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+        notification.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2s forwards';
+        
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 2500);
+      });
+    });
+
+    // Gestion du clic sur l'icône panier
+    cartButton.addEventListener('click', function() {
+      if (cart.length > 0) {
+        // Afficher un résumé du panier
+        const itemsList = cart.map(item => 
+          `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(2)}€`
+        ).join('\n');
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        alert(`Votre panier (${cart.reduce((sum, item) => sum + item.quantity, 0)} articles):\n\n${itemsList}\n\nTotal: ${total.toFixed(2)}€`);
+      } else {
+        alert('Votre panier est vide !');
+      }
+    });
+
+    // Lien vers la boutique
+    boutiqueLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (cart.length > 0) {
+        alert('Redirection vers la boutique complète...');
+        // window.location.href = 'boutique.html';
+      } else {
+        alert('Découvrez tous nos produits dans notre boutique !');
+        // window.location.href = 'boutique.html';
+      }
+    });
+
+    // ===== NEWSLETTER =====
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
       newsletterForm.addEventListener('submit', function(e) {
@@ -642,22 +748,29 @@
       });
     }
 
-    // Add to cart buttons
-    document.querySelectorAll('.btn').forEach(btn => {
-      if (btn.textContent.includes('panier')) {
-        btn.addEventListener('click', function() {
-          const productName = this.closest('.card').querySelector('h3').textContent;
-          alert(`${productName} ajouté au panier !`);
-        });
-      }
-    });
-
-    // Image fallback
+    // ===== GESTION DES ERREURS D'IMAGES =====
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('error', function() {
         this.src = 'https://via.placeholder.com/300/181a23/00ccff?text=Produit+JD';
       });
     });
+
+    // Initialiser le panier au chargement
+    updateCart();
+
+    // Animation CSS pour les notifications
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(20px); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>

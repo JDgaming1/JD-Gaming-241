@@ -1,13 +1,94 @@
-import { topic, api } from "@nitric/sdk";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Même head que index.html -->
+</head>
+<body>
+  <!-- Même navbar que index.html -->
 
-const events = topic("events").allow("publish");
+  <main class="product-page">
+    <section class="section">
+      <a href="index.html" class="back-btn">&larr; Retour</a>
+      
+      <div class="product-detail">
+        <img src="" alt="" id="productImage" loading="lazy">
+        <div class="product-info">
+          <h1 id="productName"></h1>
+          <p class="price" id="productPrice"></p>
+          <p id="productDescription"></p>
+          <button class="btn add-to-cart">Ajouter au panier</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-// Publish messages from any service, such as APIs.
-api('public').post('/users', async ({req, res}) => {
-  const userData = req.json()
+  <style>
+    .product-page {
+      padding-top: 2rem;
+    }
+    .back-btn {
+      color: var(--primary-color);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .product-detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+    .product-detail img {
+      flex: 1 1 300px;
+      max-width: 500px;
+      border-radius: 12px;
+      background: var(--darker-bg);
+      padding: 1rem;
+    }
+    .product-info {
+      flex: 1 1 300px;
+    }
+    @media (max-width: 768px) {
+      .product-detail {
+        flex-direction: column;
+      }
+    }
+  </style>
 
-  await events.publish({
-    type: 'user.created',
-    details: userData,
-  })
-}
+  <script>
+    // Récupérer l'ID du produit depuis l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    
+    // Simuler une base de données de produits
+    const productsDatabase = [
+      {
+        id: 1,
+        name: "Radiateur pour téléphone",
+        price: 60,
+        image: "https://via.placeholder.com/500/181a23/00ccff?text=Radiateur+Gaming",
+        description: "Refroidissement haute performance avec LED RGB. Compatible avec tous les smartphones. Garantie 1 an."
+      },
+      // Ajouter les autres produits ici...
+    ];
+    
+    // Trouver le produit correspondant
+    const product = productsDatabase.find(p => p.id == productId);
+    
+    if (product) {
+      document.getElementById('productName').textContent = product.name;
+      document.getElementById('productPrice').textContent = `${product.price}€`;
+      document.getElementById('productDescription').textContent = product.description;
+      document.getElementById('productImage').src = product.image;
+      document.getElementById('productImage').alt = product.name;
+    } else {
+      document.querySelector('main').innerHTML = `
+        <div class="error">
+          <h2>Produit non trouvé</h2>
+          <a href="index.html" class="btn">Retour à l'accueil</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

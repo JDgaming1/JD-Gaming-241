@@ -1,776 +1,207 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="JD Gaming - Boutique spécialisée en accessoires gaming au Gabon. Radiateurs, manettes et équipements pour gamers.">
-  <meta name="keywords" content="gaming, Gabon, accessoires gaming, manettes, radiateurs téléphone">
-  <title>JD.gaming - Boutique Gaming Gabon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <!-- Meta tags inchangés -->
   <style>
-    :root {
-      --primary-color: #00ccff;
-      --dark-bg: #181a23;
-      --darker-bg: #111217;
-      --text-color: #fff;
-      --text-light: #ccc;
-    }
+    /* AJOUTS NOUVEAUX (à placer dans ta section CSS existante) */
     
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      margin: 0;
-      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-      color: var(--text-color);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    
-    /* --- NAVBAR --- */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-    }
-    
-    .navbar {
-      width: 100%;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      background: rgba(24,26,35,0.95);
-      box-shadow: 0 1px 16px rgba(0,0,0,0.4);
-    }
-    
-    .navbar-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .navbar-menu-btn {
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-size: 1.7rem;
-      cursor: pointer;
-      margin-right: 0.5rem;
-      display: flex;
-      align-items: center;
-      padding: 0.5rem;
-    }
-    
-    .navbar-logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-color);
-      letter-spacing: 0.03em;
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    
-    .navbar-logo .jd {
-      color: var(--primary-color);
-      margin-right: 3px;
-      text-shadow: 0 0 6px rgba(0, 204, 255, 0.47);
-    }
-    
-    .navbar-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .navbar-icon {
-      color: var(--text-color);
-      font-size: 1.4rem;
-      background: none;
-      border: none;
-      margin: 0 0.2em;
-      cursor: pointer;
-      transition: color 0.16s;
+    /* Bannière promo inspirée JD Sports */
+    .promo-banner {
+      background: linear-gradient(to right, #181a23, #0066ff);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin: 1rem auto;
+      border-radius: 8px;
+      max-width: 1400px;
       position: relative;
-      padding: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,102,255,0.3);
     }
     
-    .navbar-icon:hover {
-      color: var(--primary-color);
-    }
-    
-    .cart-badge {
+    .promo-banner::before {
+      content: "";
       position: absolute;
-      top: -7px;
-      right: -7px;
-      background: var(--primary-color);
-      color: var(--dark-bg);
-      font-size: 0.7rem;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255,255,255,0.1) 50%,
+        transparent 55%
+      );
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { transform: translate(-30%, -30%) rotate(0deg); }
+      100% { transform: translate(30%, 30%) rotate(360deg); }
+    }
+    
+    /* Filtres produits */
+    .product-filters {
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-weight: bold;
+      gap: 0.8rem;
+      margin: 1.5rem auto;
+      flex-wrap: wrap;
+      max-width: 1400px;
     }
     
-    /* MENU SLIDE */
-    .side-menu {
-      position: fixed;
-      top: 0;
-      left: -220px;
-      width: 220px;
-      height: 100vh;
-      background: var(--dark-bg);
-      box-shadow: 2px 0 12px rgba(0,0,0,0.4);
-      padding: 2.5rem 1.3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      transition: left 0.23s cubic-bezier(.5,.07,.45,1.1);
-      z-index: 200;
-    }
-    
-    .side-menu.active {
-      left: 0;
-    }
-    
-    .side-menu a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1.15rem;
-      font-weight: 500;
-      padding: 0.5em 0.8em;
-      border-radius: 5px;
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      background: #232533;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
       transition: all 0.2s;
     }
     
-    .side-menu a:hover,
-    .side-menu a:focus {
-      background: #232533;
-      color: var(--primary-color);
-      transform: translateX(5px);
-    }
-    
-    .side-menu-close {
-      position: absolute;
-      top: 0.7rem;
-      right: 0.8rem;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-size: 1.3rem;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-    
-    /* Overlay for menu */
-    .menu-overlay {
-      display: none;
-      position: fixed;
-      top: 0; 
-      left: 0; 
-      width: 100vw; 
-      height: 100vh;
-      background: rgba(0,0,0,0.7);
-      z-index: 190;
-    }
-    
-    .menu-overlay.active {
-      display: block;
-    }
-    
-    /* Adjust main content for navbar */
-    main {
-      margin-top: 56px;
-    }
-    
-    /* HERO SECTION */
-    .hero-bg {
-      background: url('https://via.placeholder.com/1920x1080/181a23/00ccff?text=JD.Gaming') no-repeat center center/cover;
-      padding: 4rem 1rem 2.5rem;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.7);
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .logo {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      margin-bottom: 0.5rem;
-      color: var(--text-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.2em;
-    }
-    
-    .logo .jd {
-      color: var(--primary-color);
-      text-shadow: 0 0 8px rgba(0, 204, 255, 0.33);
-    }
-    
-    .hero-bg p {
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      color: var(--text-color);
-      font-weight: 500;
-      margin: 0;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      max-width: 800px;
-      padding: 0 1rem;
-    }
-    
-    /* PRODUCTS SECTION */
-    .section {
-      padding: 2rem 1rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    
-    .section-title {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 700;
-      color: var(--text-color);
-      margin: 1rem 0 2rem;
-      text-align: center;
-      letter-spacing: 0.02em;
-      position: relative;
-    }
-    
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
+    .filter-btn.active {
       background: var(--primary-color);
-      margin: 0.5rem auto 0;
+      color: var(--dark-bg);
     }
     
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    
+    /* Amélioration des cartes produits */
     .card {
-      background: var(--dark-bg);
-      border-radius: 18px;
-      overflow: hidden;
-      text-align: center;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    
-    .card:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    }
-    
-    .card img {
-      width: 100%;
-      max-width: 180px;
-      height: auto;
-      aspect-ratio: 1/1;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      background: var(--darker-bg);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-      padding: 0.5rem;
-    }
-    
-    .card h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-color);
-      margin-bottom: 0.5rem;
-    }
-    
-    .card p {
-      font-size: 1rem;
-      margin: 0 0 0.75rem;
-      color: var(--text-light);
-      text-align: center;
-      flex-grow: 1;
-    }
-    
-    .card .price {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-top: 0.5rem;
-    }
-    
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background: var(--primary-color);
-      color: var(--dark-bg);
-      border-radius: 6px;
-      border: none;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.18s, transform 0.1s;
-      text-decoration: none;
-      margin-top: 0.5rem;
-    }
-    
-    .btn:hover {
-      background: #0099cc;
-      transform: translateY(-2px);
-    }
-    
-    .btn:active {
-      transform: translateY(0);
-    }
-    
-    /* CONTACT SECTION */
-    .contact-section {
-      background: var(--darker-bg);
-      padding: 3rem 1rem;
-    }
-    
-    .contact-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    
-    .contact-info, 
-    .newsletter {
-      flex: 1 1 280px;
-      min-width: 240px;
-      max-width: 400px;
-    }
-    
-    .contact-info h2,
-    .newsletter h2 {
-      font-size: 1.4rem;
-      color: var(--text-color);
-      margin: 0 0 1.5rem;
-      font-weight: 700;
       position: relative;
-      padding-bottom: 0.5rem;
     }
     
-    .contact-info h2::after,
-    .newsletter h2::after {
-      content: '';
+    .card::after {
+      content: "NOUVEAU";
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--primary-color);
+      top: 15px;
+      right: -30px;
+      background: #ff4757;
+      color: white;
+      padding: 0.3rem 2rem;
+      transform: rotate(45deg);
+      font-size: 0.8rem;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
     
-    .contact-info p {
-      font-size: 1rem;
-      color: var(--text-light);
-      margin: 0 0 1.5rem;
-    }
-    
-    .socials {
+    /* Barre de recherche améliorée */
+    .search-container {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      margin: 0 1rem;
     }
     
-    .socials a {
-      color: var(--text-color);
-      font-size: 1.5rem;
-      transition: color 0.18s, transform 0.2s;
-      text-decoration: none;
-    }
-    
-    .socials a:hover {
-      color: var(--primary-color);
-      transform: translateY(-3px);
-    }
-    
-    .newsletter-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1.5rem;
-    }
-    
-    .newsletter-form input[type="email"] {
-      padding: 0.8rem 1rem;
-      border-radius: 6px;
+    .search-container input {
+      padding: 0.8rem;
+      border-radius: 6px 0 0 6px;
       border: none;
-      background: #232533;
-      color: var(--text-color);
-      font-size: 1rem;
-      flex: 1;
-      min-width: 200px;
+      width: 100%;
     }
     
-    .newsletter-form input[type="email"]::placeholder {
-      color: #999;
-    }
-    
-    .newsletter-form button {
-      padding: 0.8rem 1.5rem;
+    .search-container button {
+      padding: 0 1.2rem;
       background: var(--primary-color);
       color: var(--dark-bg);
-      border-radius: 6px;
       border: none;
-      font-weight: bold;
-      font-size: 1rem;
+      border-radius: 0 6px 6px 0;
       cursor: pointer;
-      transition: background 0.18s;
-    }
-    
-    .newsletter-form button:hover {
-      background: #0099cc;
-    }
-    
-    /* FOOTER */
-    footer {
-      background: var(--dark-bg);
-      color: #aaa;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.95rem;
-      border-top: 1px solid #232533;
-    }
-    
-    /* RESPONSIVE ADJUSTMENTS */
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 0 1rem;
-        height: 50px;
-      }
-      
-      .navbar-logo {
-        font-size: 1.2rem;
-      }
-      
-      .hero-bg {
-        padding: 2rem 1rem;
-      }
-      
-      .products {
-        grid-template-columns: 1fr;
-        padding: 0;
-      }
-      
-      .contact-container {
-        flex-direction: column;
-        gap: 2rem;
-      }
-      
-      .side-menu {
-        width: 80vw;
-        padding: 2rem 1rem;
-      }
-      
-      .newsletter-form input[type="email"],
-      .newsletter-form button {
-        width: 100%;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 0 0.5rem;
-      }
-      
-      .navbar-menu-btn,
-      .navbar-icon {
-        font-size: 1.3rem;
-      }
-      
-      .side-menu {
-        width: 85vw;
-      }
-    }
-
-    /* Animation pour le panier */
-    @keyframes bounce {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-    
-    .cart-badge.added {
-      animation: bounce 0.5s;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-left">
-        <button class="navbar-menu-btn" id="openMenuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-        <a href="#" class="navbar-logo"><span class="jd">JD</span>.gaming</a>
+  <!-- Navbar modifiée -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <button class="navbar-menu-btn" id="openMenuBtn"><i class="fas fa-bars"></i></button>
+      <a href="#" class="navbar-logo"><span class="jd">JD</span>.gaming</a>
+    </div>
+    <div class="navbar-right">
+      <div class="search-container">
+        <input type="text" placeholder="Rechercher..." id="searchInput">
+        <button aria-label="Recherche"><i class="fas fa-search"></i></button>
       </div>
-      <div class="navbar-right">
-        <button class="navbar-icon" aria-label="Recherche">
-          <i class="fas fa-search"></i>
-        </button>
-        <button class="navbar-icon" id="cartButton" aria-label="Panier">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="cart-badge">0</span>
-        </button>
-      </div>
-    </nav>
-  </header>
+      <button class="navbar-icon" id="cartButton">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">0</span>
+      </button>
+    </div>
+  </nav>
 
-  <!-- Side menu -->
-  <aside class="side-menu" id="sideMenu">
-    <button class="side-menu-close" id="closeMenuBtn" aria-label="Fermer"><i class="fas fa-times"></i></button>
-    <a href="#produits">Produits</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">À Propos</a>
-    <a href="#" id="boutiqueLink">Boutique</a>
-  </aside>
-  <div class="menu-overlay" id="menuOverlay"></div>
-
-  <!-- Main content -->
+  <!-- Contenu principal -->
   <main>
-    <section class="hero-bg">
-      <div class="logo">
-        <span class="jd">JD</span><span>.gaming</span>
-      </div>
-      <p>Trouve ton bonheur et améliore tes performances</p>
-      <a href="#produits" class="btn">Découvrir nos produits</a>
+    <!-- Bannière promo ajoutée -->
+    <section class="promo-banner">
+      <h2>OFFRE GAMING -30%</h2>
+      <p>Seulement cette semaine sur toutes les manettes</p>
+      <a href="#produits" class="btn">Voir les promotions</a>
     </section>
 
     <section class="section" id="produits">
-      <h2 class="section-title">Produits en vedette</h2>
-      <div class="products">
-        <article class="card" data-id="1">
-          <img src="https://via.placeholder.com/300/181a23/00ccff?text=Radiateur" alt="Radiateur téléphone gaming" loading="lazy">
-          <h3>Radiateur pour téléphone</h3>
-          <p>Refroidissement rapide pour éviter la surchauffe pendant vos parties.</p>
-          <div class="price">60€</div>
-          <button class="btn add-to-cart">Ajouter au panier</button>
-        </article>
-        
-        <article class="card" data-id="2">
-          <img src="https://via.placeholder.com/300/181a23/00ccff?text=Manette" alt="Manette mobile gaming" loading="lazy">
-          <h3>Manette pour téléphone</h3>
-          <p>Contrôle précis et ergonomique pour les pros du gaming mobile.</p>
-          <div class="price">45€</div>
-          <button class="btn add-to-cart">Ajouter au panier</button>
-        </article>
-        
-        <article class="card" data-id="3">
-          <img src="https://via.placeholder.com/300/181a23/00ccff?text=Gants" alt="Gants pour pouces gaming" loading="lazy">
-          <h3>Gants pour pouces</h3>
-          <p>Améliore ta précision et ta vitesse dans tous les jeux.</p>
-          <div class="price">15€</div>
-          <button class="btn add-to-cart">Ajouter au panier</button>
-        </article>
+      <h2 class="section-title">Nos Produits Gaming</h2>
+      
+      <!-- Filtres ajoutés -->
+      <div class="product-filters">
+        <button class="filter-btn active">Tous</button>
+        <button class="filter-btn">Manettes</button>
+        <button class="filter-btn">Accessoires</button>
+        <button class="filter-btn">Promotions</button>
       </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-      <div class="contact-container">
-        <div class="contact-info">
-          <h2>Contact</h2>
-          <p>Pour toute question ou demande spéciale, n'hésitez pas à nous contacter :</p>
-          <p><i class="fas fa-envelope"></i> info@jdgaming.ga</p>
-          <p><i class="fas fa-phone"></i> +241 XX XX XX XX</p>
-          <div class="socials">
-            <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        
-        <div class="newsletter">
-          <h2>Newsletter</h2>
-          <p>Abonnez-vous pour recevoir nos offres spéciales et actualités gaming !</p>
-          <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="Votre adresse e-mail" required>
-            <button type="submit">S'inscrire</button>
-          </form>
-        </div>
+      
+      <div class="products">
+        <!-- Produits existants avec badge "Nouveau" -->
+        <article class="card" data-id="1" data-category="Accessoires">
+          <!-- ... contenu existant ... -->
+        </article>
+        <!-- ... autres produits ... -->
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 JD.gaming - Tous droits réservés</p>
-    <p><a href="#" style="color: #aaa; text-decoration: none;">Mentions légales</a> | <a href="#" style="color: #aaa; text-decoration: none;">Politique de confidentialité</a></p>
-  </footer>
-
   <script>
-    // ===== GESTION DU MENU =====
-    const openMenuBtn = document.getElementById('openMenuBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const sideMenu = document.getElementById('sideMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-
-    function toggleMenu() {
-      sideMenu.classList.toggle('active');
-      menuOverlay.classList.toggle('active');
-    }
-
-    openMenuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
-    menuOverlay.addEventListener('click', toggleMenu);
-
-    // ===== PANIER =====
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartButton = document.getElementById('cartButton');
-    const boutiqueLink = document.getElementById('boutiqueLink');
-
-    // Mettre à jour le badge du panier
-    function updateCart() {
-      const badge = document.querySelector('.cart-badge');
-      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-      
-      badge.textContent = totalItems;
-      badge.style.display = totalItems > 0 ? 'flex' : 'none';
-      
-      // Sauvegarder dans le localStorage
-      localStorage.setItem('cart', JSON.stringify(cart));
-      
-      // Animation du badge
-      if (totalItems > 0) {
-        badge.classList.add('added');
-        setTimeout(() => badge.classList.remove('added'), 500);
-      }
-    }
-
-    // Gestion du clic sur "Ajouter au panier"
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
+    // AJOUTS JS (à ajouter à ton script existant)
+    
+    // Gestion des filtres
+    document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        const card = this.closest('.card');
-        const productId = card.dataset.id;
-        const productName = card.querySelector('h3').textContent;
-        const productPrice = parseFloat(card.querySelector('.price').textContent.replace('€', ''));
-        const productImage = card.querySelector('img').src;
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        this.classList.add('active');
         
-        // Vérifier si le produit est déjà dans le panier
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-          existingItem.quantity += 1;
+        const filter = this.textContent;
+        document.querySelectorAll('.card').forEach(card => {
+          if (filter === 'Tous' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Barre de recherche
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        if (name.includes(searchTerm) || desc.includes(searchTerm)) {
+          card.style.display = 'flex';
         } else {
-          cart.push({
-            id: productId,
-            name: productName,
-            price: productPrice,
-            image: productImage,
-            quantity: 1
-          });
+          card.style.display = 'none';
         }
-        
-        updateCart();
-        
-        // Notification visuelle
-        const notification = document.createElement('div');
-        notification.textContent = `${productName} ajouté au panier !`;
-        notification.style.position = 'fixed';
-        notification.style.bottom = '20px';
-        notification.style.right = '20px';
-        notification.style.backgroundColor = 'var(--primary-color)';
-        notification.style.color = 'var(--dark-bg)';
-        notification.style.padding = '10px 20px';
-        notification.style.borderRadius = '5px';
-        notification.style.zIndex = '1000';
-        notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-        notification.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2s forwards';
-        
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 2500);
       });
     });
-
-    // Gestion du clic sur l'icône panier
-    cartButton.addEventListener('click', function() {
-      if (cart.length > 0) {
-        // Afficher un résumé du panier
-        const itemsList = cart.map(item => 
-          `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(2)}€`
-        ).join('\n');
-        
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
-        alert(`Votre panier (${cart.reduce((sum, item) => sum + item.quantity, 0)} articles):\n\n${itemsList}\n\nTotal: ${total.toFixed(2)}€`);
-      } else {
-        alert('Votre panier est vide !');
-      }
-    });
-
-    // Lien vers la boutique
-    boutiqueLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (cart.length > 0) {
-        alert('Redirection vers la boutique complète...');
-        // window.location.href = 'boutique.html';
-      } else {
-        alert('Découvrez tous nos produits dans notre boutique !');
-        // window.location.href = 'boutique.html';
-      }
-    });
-
-    // ===== NEWSLETTER =====
-    const newsletterForm = document.getElementById('newsletterForm');
-    if (newsletterForm) {
-      newsletterForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('input[type="email"]').value;
-        alert(`Merci pour votre inscription ! (${email})`);
-        this.reset();
+    
+    // Animation hover améliorée
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+        this.querySelector('img').style.transform = 'scale(1.1)';
       });
-    }
-
-    // ===== GESTION DES ERREURS D'IMAGES =====
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', function() {
-        this.src = 'https://via.placeholder.com/300/181a23/00ccff?text=Produit+JD';
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+        this.querySelector('img').style.transform = '';
       });
     });
-
-    // Initialiser le panier au chargement
-    updateCart();
-
-    // Animation CSS pour les notifications
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes fadeOut {
-        from { opacity: 1; transform: translateY(0); }
-        to { opacity: 0; transform: translateY(20px); }
-      }
-    `;
-    document.head.appendChild(style);
   </script>
 </body>
 </html>

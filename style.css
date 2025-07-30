@@ -121,3 +121,51 @@ body.menu-open {
 .card:nth-child(1) { animation-delay: 0.1s; }
 .card:nth-child(2) { animation-delay: 0.2s; }
 .card:nth-child(3) { animation-delay: 0.3s; }
+
+.promo-banner {
+  background: linear-gradient(135deg, #181a23 0%, #00ccff 100%);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 56px; /* Pour compenser la navbar fixe */
+}
+
+.promo-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.promo-tag {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff4757;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.promo-banner h2 {
+  margin: 0.5rem 0;
+  font-size: 1.8rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.promo-banner p {
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.promo-btn {
+  background: white;
+  color: #181a23 !important;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.promo-btn:hover {
+  transform: scale(1.05);
+}
